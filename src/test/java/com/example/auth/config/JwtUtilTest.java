@@ -68,16 +68,6 @@ class JwtUtilTest {
 
     }
 
-    @Test
-    void JWT의_유효기간이_만료되면_JWT의_유효성이_만료된다() throws InterruptedException {
-        String accessToken = jwtUtil.generateAccessToken(1L, "user1", UserRole.ROLE_USER, "nickName1", 1000L);
-
-        Thread.sleep(1500L); // 액세스 토큰 만료 유도
-
-        System.out.println("access token = " + accessToken);
-//        Assertions.assertThrows(ExpiredJwtException.class, () -> jwtUtil.verifySignature(accessToken));
-    }
-
 
     @Test
     void 리프레쉬_토큰이_정상적으로_발행되는지_확인한다() {
@@ -99,9 +89,6 @@ class JwtUtilTest {
         String validRefreshToken = jwtUtil.generateRefreshToken(userId, 60 * 60 * 1000L * 24);
 
         RefreshToken refreshTokenEntity = RefreshToken.generateRefreshToken(userId, validRefreshToken);
-
-        // Mock 객체가 저장 메서드를 호출하면 아무 동작도 하지 않도록 설정
-//        when(tokenRepository.save(refreshTokenEntity)).thenReturn(refreshTokenEntity);
 
         Thread.sleep(1500); // 액세스 토큰 만료 유도
 

@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class SignUpRequest {
 
     @NotBlank(message = "등록할 이름을 입력하세요!")
