@@ -1,6 +1,7 @@
 jwt:
   secret:
-    key: ${JWT_SECRET_KEY}
+#    key: ${JWT_SECRET_KEY}
+    key: Mfgg55XU6tkQs9aB9I/J+Z1ydGA9fbrgiPbTjyvA2NA=
 
 spring:
   datasource:
