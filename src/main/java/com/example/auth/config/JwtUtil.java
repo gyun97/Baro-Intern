@@ -69,6 +69,14 @@ public class JwtUtil {
                         .compact();
     }
 
+    public void verifySignature(String token) throws ServerException {
+        String extractToken = substringToken(token); // "Bearer " 제외
+        Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(extractToken);
+    }
+
     // 인증 타입(Bearer ) 제외한 토큰 추출
     public String substringToken(String tokenValue) throws ServerException {
         if (StringUtils.hasText(tokenValue) && tokenValue.startsWith(BEARER_PREFIX)) {
@@ -99,6 +107,8 @@ public class JwtUtil {
         }
 
     }
+
+
 
 
 }
